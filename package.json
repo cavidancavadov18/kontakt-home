@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:clear": "node -e \"const fs=require('fs');const p='data/db';if(fs.existsSync(p))fs.readdirSync(p).filter(f=>f.endsWith('.json')).forEach(f=>fs.unlinkSync(p+'/'+f));console.log('db cleared')\""
   },
   "dependencies": {
     "next": "16.4.2",

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local JSON database (keep directory marker)
+/data/db/*.json
+!/data/db/.gitkeep
