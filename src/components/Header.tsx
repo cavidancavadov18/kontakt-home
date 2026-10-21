@@ -58,6 +58,12 @@ export function Header({
               {dict.stores}
             </Link>
             <Link
+              href={`${base}/divara-qoy`}
+              className="font-semibold text-[#ff5a7a] hover:text-white"
+            >
+              {locale === "az" ? "Divara qoy" : "На стену"}
+            </Link>
+            <Link
               href={`${base}/korporativ-satislar`}
               className="kh-uline hover:text-white"
             >
@@ -182,6 +188,7 @@ export function Header({
               label={dict.cart}
               icon={<IconCart className="h-6 w-6" />}
               badge={cartCount}
+              cartTarget
             />
           </div>
         </div>
@@ -255,15 +262,18 @@ function HeaderAction({
   label,
   icon,
   badge,
+  cartTarget,
 }: {
   href: string;
   label: string;
   icon: React.ReactNode;
   badge?: number;
+  cartTarget?: boolean;
 }) {
   return (
     <Link
       href={href}
+      data-cart-target={cartTarget ? "" : undefined}
       className="group relative flex w-[72px] flex-col items-center gap-1 px-1 py-1 text-center text-white transition hover:opacity-90"
     >
       <span className="relative flex h-6 w-6 items-center justify-center">

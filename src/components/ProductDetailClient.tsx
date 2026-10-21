@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { flyToCart } from "@/lib/flyToCart";
 import { useApp } from "@/context/AppContext";
 import { useVideoModal } from "@/context/VideoModalContext";
 import type { Product } from "@/data/products";
@@ -46,6 +47,7 @@ export function ProductDetailClient({
   dict: Dictionary;
 }) {
   const router = useRouter();
+  const galleryRef = useRef<HTMLDivElement>(null);
   const { addToCart, toggleFavorite, isFavorite, toggleCompare, isCompare } =
     useApp();
   const { openVideo } = useVideoModal();
@@ -219,7 +221,10 @@ export function ProductDetailClient({
 
       <div className="grid gap-6 rounded-2xl border border-[#eee] bg-white p-4 md:grid-cols-2 md:p-6">
         <div>
-          <div className="relative mx-auto mb-4 aspect-square w-full max-w-md">
+          <div
+            ref={galleryRef}
+            className="relative mx-auto mb-4 aspect-square w-full max-w-md"
+          >
             <Image
               src={activeImg}
               alt={product.name[locale]}
@@ -237,7 +242,7 @@ export function ProductDetailClient({
                   title: product.name[locale],
                 })
               }
-              className="absolute bottom-3 right-3 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[12px] font-semibold text-[#e5004d] shadow-md hover:bg-white"
+              className="absolute bottom-3 right-3 z-20 flex items-center gap-2 rounded-full bg-white/95 px-3 py-2 text-[12px] font-semibold text-[#e5004d] shadow-md hover:bg-white"
               aria-label={watchVideo}
             >
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#fff3f7] text-[11px]">
@@ -417,6 +422,7 @@ export function ProductDetailClient({
             <button
               type="button"
               onClick={() => {
+                if (galleryRef.current) flyToCart(galleryRef.current, activeImg);
                 addToCart(product, qty);
                 showToast(dict.addedToCart, 1800);
               }}

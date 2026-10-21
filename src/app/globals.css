@@ -1073,6 +1073,70 @@ html[data-theme="dark"] .kh-video-card div:last-child {
 }
 
 
+@keyframes kh-tv-glow {
+  0% {
+    filter: brightness(2.4);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes kh-tv-pan {
+  0%,
+  100% {
+    transform: scale(1.12) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.12) translate3d(-3%, -2%, 0);
+  }
+}
+
+@keyframes kh-air {
+  0% {
+    transform: translateY(0) scaleX(0.5);
+    opacity: 0;
+  }
+  28% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(46px) scaleX(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes kh-cart-pop {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.28);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.kh-tv-on {
+  animation: kh-tv-glow 0.65s ease-out both;
+}
+
+.kh-tv-picture {
+  background:
+    radial-gradient(circle at 72% 24%, #ffe7a3 0 7%, transparent 8%),
+    linear-gradient(180deg, #6eb8ea 0%, #d7eefb 40%, #8eae6a 41%, #3f6d3c 72%, #274626 100%);
+  animation: kh-tv-pan 8s ease-in-out infinite;
+}
+
+.kh-air-streak {
+  animation: kh-air 1.45s ease-out infinite;
+}
+
+.kh-cart-pop {
+  animation: kh-cart-pop 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .kh-logo-img,
   .kh-euronics-img,
@@ -1087,7 +1151,11 @@ html[data-theme="dark"] .kh-video-card div:last-child {
   .kh-4d.kh-4d-in,
   .kh-hero-kenburns,
   .kh-play-btn,
-  .kh-video-play-ring {
+  .kh-video-play-ring,
+  .kh-tv-on,
+  .kh-tv-picture,
+  .kh-air-streak,
+  .kh-cart-pop {
     animation: none !important;
   }
   .kh-4d {

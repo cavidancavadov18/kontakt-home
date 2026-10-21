@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { flyToCart } from "@/lib/flyToCart";
 import { useApp } from "@/context/AppContext";
 import { useVideoModal } from "@/context/VideoModalContext";
 import type { Product } from "@/data/products";
@@ -69,6 +70,7 @@ export function ProductCard({
     useApp();
   const { openVideo } = useVideoModal();
   const [toast, setToast] = useState("");
+  const mediaRef = useRef<HTMLDivElement>(null);
   const fav = isFavorite(product.id);
   const cmp = isCompare(product.id);
   const monthly = monthlyPayment(product.price);
@@ -95,6 +97,7 @@ export function ProductCard({
   const showFreeDelivery = !showFast && product.price >= 49.99;
 
   function handleAdd() {
+    if (mediaRef.current) flyToCart(mediaRef.current, product.image);
     addToCart(product);
     setToast(dict.addedToCart);
     setTimeout(() => setToast(""), 1600);
@@ -155,7 +158,7 @@ export function ProductCard({
         </div>
 
         <Link href={`/${locale}/mehsul/${product.slug}`} className="block">
-          <div className="kh-img-shine relative mx-auto aspect-square w-full max-w-[168px]">
+          <div ref={mediaRef} className="kh-img-shine relative mx-auto aspect-square w-full max-w-[168px]">
             <Image
               src={product.image}
               alt={product.name[locale]}

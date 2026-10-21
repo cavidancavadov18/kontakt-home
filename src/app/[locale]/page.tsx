@@ -8,6 +8,7 @@ import { TrustBar } from "@/components/TrustBar";
 import { BlogSection } from "@/components/BlogSection";
 import { HotDealsSection } from "@/components/HotDealsSection";
 import { VideoReviews } from "@/components/VideoReviews";
+import { WallFitBanner } from "@/components/WallFit";
 import { banners } from "@/data/banners";
 import { quickCategories } from "@/data/categories";
 import { homeProductSlugs, sectionTitles } from "@/data/homeSections";
@@ -72,6 +73,7 @@ export default async function HomePage({
   return (
     <>
       <HeroSlider banners={banners} locale={locale} />
+      <WallFitBanner locale={locale} />
       <CategoryGrid items={quickCategories} locale={locale} />
 
       {/* Real kontakt.az order: advantages → Həftənin məhsulları → Satış liderləri */}

@@ -20,7 +20,7 @@ export function BottomNav({
   const items = [
     { href: base, label: dict.home, icon: IconHome, exact: true },
     { href: `${base}/kataloq`, label: dict.catalog, icon: IconGrid },
-    { href: `${base}/sebet`, label: dict.cart, icon: IconCart, badge: cartCount },
+    { href: `${base}/sebet`, label: dict.cart, icon: IconCart, badge: cartCount, cart: true },
     {
       href: "https://wa.me/994508286060",
       label: dict.liveChat,
@@ -62,7 +62,11 @@ export function BottomNav({
                   <span className="truncate">{item.label}</span>
                 </a>
               ) : (
-                <Link href={item.href} className={className}>
+                <Link
+                  href={item.href}
+                  className={className}
+                  data-cart-target={"cart" in item && item.cart ? "" : undefined}
+                >
                   <Icon className="h-5 w-5" />
                   <span className="truncate">{item.label}</span>
                   {item.badge ? (
