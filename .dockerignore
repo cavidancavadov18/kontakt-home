@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.cursor
+coverage
+out
+build
+*.md
+.env*
+data/db/*.json
+npm-debug.log*
+.DS_Store
