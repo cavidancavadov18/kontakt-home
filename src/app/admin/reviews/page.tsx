@@ -13,7 +13,7 @@ import {
 } from "@/components/admin/DataTable";
 import { admin } from "@/components/admin/adminStyles";
 import { useToast } from "@/components/admin/useToast";
-import type { Review } from "@/server/db";
+import type { Review } from "@/types/api";
 
 export default function AdminReviewsPage() {
   const { toast } = useToast();

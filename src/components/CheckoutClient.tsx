@@ -13,7 +13,7 @@ import { expiryOk, luhnOk } from "@/lib/card";
 import { formatPrice } from "@/lib/format";
 import { apiPost, ApiError } from "@/lib/api";
 import { saveOrder } from "@/lib/orders";
-import type { Order } from "@/server/db";
+import type { Order } from "@/types/api";
 import type { Dictionary, Locale } from "@/i18n/dictionaries";
 
 function readSessionPromo(): string | null {

@@ -13,7 +13,7 @@ import {
 } from "@/lib/addresses";
 import { apiDelete, apiGet, apiPut } from "@/lib/api";
 import { loadOrders, type SavedOrder } from "@/lib/orders";
-import type { Address, Order } from "@/server/db";
+import type { Address, Order } from "@/types/api";
 import { loadOneClickOrders, type OneClickOrder } from "@/lib/oneClickOrders";
 import { formatPrice } from "@/lib/format";
 import type { Dictionary, Locale } from "@/i18n/dictionaries";

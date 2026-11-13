@@ -13,7 +13,7 @@ import {
 } from "@/components/admin/DataTable";
 import { admin } from "@/components/admin/adminStyles";
 import { useToast } from "@/components/admin/useToast";
-import type { StockEntry } from "@/server/db";
+import type { StockEntry } from "@/types/api";
 
 type EditRow = { qty: string; reserved: string };
 

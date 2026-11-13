@@ -1,15 +1,32 @@
 services:
+  api:
+    build: ./backend
+    environment:
+      KH_SECRET: kontakt-dev-secret-change-me
+      KH_DB_DIR: /data/db
+      CATALOG_PATH: /catalog/catalog.json
+      VARIANTS_PATH: /catalog/phone-variants.json
+      STORES_PATH: /app/data/stores.json
+    volumes:
+      - kh-data:/data/db
+      - ./src/data/catalog.json:/catalog/catalog.json:ro
+      - ./src/data/phone-variants.json:/catalog/phone-variants.json:ro
+    restart: unless-stopped
+
   web:
-    build: .
+    build:
+      context: .
+      args:
+        API_INTERNAL_URL: http://api:8000
     ports:
       - "3001:3000"
     environment:
       NODE_ENV: production
       PORT: "3000"
       HOSTNAME: 0.0.0.0
-      KH_SECRET: kontakt-dev-secret-change-me
-    volumes:
-      - kh-data:/app/data/db
+      API_INTERNAL_URL: http://api:8000
+    depends_on:
+      - api
     restart: unless-stopped
 
 volumes:

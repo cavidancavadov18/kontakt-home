@@ -12,7 +12,7 @@ import {
   Tr,
 } from "@/components/admin/DataTable";
 import { StatCard } from "@/components/admin/StatCard";
-import type { Order } from "@/server/db";
+import type { Order } from "@/types/api";
 
 type Stats = {
   orders: number;

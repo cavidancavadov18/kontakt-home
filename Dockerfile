@@ -8,6 +8,8 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ARG API_INTERNAL_URL=http://api:8000
+ENV API_INTERNAL_URL=$API_INTERNAL_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
@@ -17,20 +19,11 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
-RUN apk add --no-cache su-exec \
-  && addgroup --system --gid 1001 nodejs \
+RUN addgroup --system --gid 1001 nodejs \
   && adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-RUN mkdir -p /app/data/db && chown -R nextjs:nodejs /app/data
-COPY <<'EOF' /usr/local/bin/docker-entrypoint.sh
-#!/bin/sh
-set -e
-mkdir -p /app/data/db
-chown -R nextjs:nodejs /app/data/db
-exec su-exec nextjs:nodejs node server.js
-EOF
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+USER nextjs
 EXPOSE 3000
-ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["node", "server.js"]

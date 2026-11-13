@@ -12,7 +12,7 @@ import {
 } from "@/components/admin/DataTable";
 import { admin } from "@/components/admin/adminStyles";
 import { useToast } from "@/components/admin/useToast";
-import type { OneClickRecord } from "@/server/db";
+import type { OneClickRecord } from "@/types/api";
 
 export default function AdminOneClickPage() {
   const { toast } = useToast();

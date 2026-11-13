@@ -15,7 +15,7 @@ import {
   persistProductReviews,
   type ProductReview,
 } from "@/lib/productReviews";
-import type { Review } from "@/server/db";
+import type { Review } from "@/types/api";
 import { youtubeIdForProduct } from "@/lib/productVideo";
 import {
   getColorOptions,

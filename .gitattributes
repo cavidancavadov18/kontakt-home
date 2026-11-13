@@ -1,0 +1,8 @@
+# GitHub language bar: show Python backend, hide the Next.js storefront sources.
+*.ts linguist-vendored
+*.tsx linguist-vendored
+*.js linguist-vendored
+*.css linguist-vendored
+*.mjs linguist-vendored
+backend/** linguist-detectable
+backend/**/*.py linguist-language=Python

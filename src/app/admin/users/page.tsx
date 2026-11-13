@@ -10,7 +10,7 @@ import {
   Td,
   Tr,
 } from "@/components/admin/DataTable";
-import type { User } from "@/server/db";
+import type { User } from "@/types/api";
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);

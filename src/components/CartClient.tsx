@@ -11,7 +11,7 @@ import {
   FREE_DELIVERY_THRESHOLD,
   PROMOS,
 } from "@/lib/cartPricing";
-import type { PromoValidation } from "@/server/promo";
+import type { PromoValidation } from "@/types/api";
 import { formatPrice } from "@/lib/format";
 import type { Dictionary, Locale } from "@/i18n/dictionaries";
 import { IconMinus, IconPlus } from "./Icons";

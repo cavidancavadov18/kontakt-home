@@ -13,7 +13,7 @@ import {
 } from "@/components/admin/DataTable";
 import { admin } from "@/components/admin/adminStyles";
 import { useToast } from "@/components/admin/useToast";
-import type { Order } from "@/server/db";
+import type { Order } from "@/types/api";
 
 export default function AdminOrdersPage() {
   const { toast } = useToast();
